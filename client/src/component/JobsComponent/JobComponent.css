@@ -1,0 +1,58 @@
+.JobComponentContainer {
+  display: flex;
+  border: 2px solid rgb(0, 229, 255);
+  width: 80%;
+  height: 15%;
+  margin-top: 5%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.JobComponentContainer-ImageContainer {
+  display: flex;
+  border: 2px solid pink;
+  height: 90%;
+  width: 8%;
+  justify-content: center;
+  align-items: center;
+}
+
+.JobComponentContainer-InformationContainer {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+  height: 90%;
+  width: 55%;
+  margin-left: 2%;
+}
+
+.JobComponentContainer-InformationContainer-Name {
+  display: flex;
+  margin-top: 2%;
+  border: 2px solid purple;
+}
+
+.JobComponentContainer-InformationContainer-CompanyDetail {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+  border: 2px solid yellowgreen;
+}
+
+.JobComponentContainer-InformationContainer-JobType {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+  border: 2px solid green;
+}
+
+.JobConmponentContainer-Skills {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 8%;
+  border: 2px solid green;
+  width: 37%;
+  height: 90%;
+}
