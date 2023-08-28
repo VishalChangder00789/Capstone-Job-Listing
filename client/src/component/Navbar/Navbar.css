@@ -1,65 +1,94 @@
-.Navbar-Container {
-  position: sticky;
+.NavbarContainer {
   display: flex;
   width: 100%;
-  height: 8%;
-  /* border: 2px solid black; */
+  height: 10vh;
+  justify-content: center;
+  align-items: center;
 }
 
-.Navbar-Container-ImageContainer {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  /* border: 2px solid red; */
-}
-
-.Navbar-Container-ImageContainer > img {
+.NavbarContainer > img {
   display: flex;
   width: 100%;
   height: 100%;
 }
 
-.Navbar-Container-InteractiveElements {
+.NavbarContainer-Buttons {
   display: flex;
-  /* border: 2px solid navajowhite; */
-  height: 100%;
-  width: 15%;
   position: absolute;
-  right: 4%;
+  /* border: 2px solid rgb(255, 255, 255); */
+  right: 0;
+  margin-right: 4%;
+  height: 10%;
+  min-width: 25%;
   justify-content: space-around;
   align-items: center;
 }
 
-.Navbar-Container-InteractiveElements-Button {
+.NavbarContainer-Profile {
+  display: flex;
+  /* border: 2px solid red; */
+  min-width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.NavbarContainer-Profile > div {
+  display: flex;
+  /* border: 2px solid blue; */
+  width: 75%;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.NavbarContainer-Profile > div > div {
+  /* border: 2px solid red; */
+  border-radius: 50%;
+  height: 40px;
+  width: 18%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50%;
-  width: 40%;
-  background: #ff6b6b;
-  outline: none;
-  border: 2px solid white;
+}
+
+.NavbarContainer-Profile > div > div > img {
+  display: flex;
+  height: 20px;
+  width: 50%;
+}
+
+.NavbarContainer-Profile > button {
+  display: flex;
+  height: 45px;
+  width: 25%;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid white; */
+  background: none;
   border-radius: 7px;
   color: white;
-  font-family: "Roboto", sans-serif;
+  border: none;
+  font-weight: 600;
+}
+
+.NavbarContainer-Buttons > button {
+  height: 45%;
+  width: 35%;
+  outline: none;
+  border-radius: 7px;
   font-weight: 700;
 }
 
-.Register {
-  background: white;
-  color: #ff6b6b;
+.LoginButton {
+  background: #ff6b6b;
+  color: #ffffff;
+  border: 2px solid white;
 }
 
-.Profile {
-  border-radius: 50%;
-  display: flex;
-  border: 2px solid white;
-  height: 60%;
-  width: 20%;
-}
-.Name {
-  display: flex;
+.RegisterButton {
+  background: white;
+  color: #ff6b6b;
   border: none;
-  width: 70%;
-  background: none;
 }

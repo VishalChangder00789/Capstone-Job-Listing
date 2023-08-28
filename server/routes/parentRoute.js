@@ -12,14 +12,19 @@ router.route("/_LOGIN").post(authController.login);
 // Chained and Protection of routes  : If the user is not authenticated then it will not be able to go forward
 router.route("/_USERS").get(authController.protect, userController.getAllUsers);
 
+// router
+//   .route("/_JOBS")
+//   .get(authController.protect, jobController.getAllJobs)
+//   .post(authController.protect, jobController.createJobs);
+
 router
   .route("/_JOBS")
-  .get(authController.protect, jobController.getAllJobs)
+  .get(jobController.getAllJobs)
   .post(authController.protect, jobController.createJobs);
 
 router
   .route("/_JOBS/:id")
-  .get(authController.protect, jobController.getJob)
+  .get(jobController.getJob)
   .patch(authController.protect, jobController.updateJob);
 
 module.exports = router;

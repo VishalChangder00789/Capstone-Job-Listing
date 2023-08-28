@@ -1,0 +1,215 @@
+/*This will be flexible*/
+.JobsDescriptionContainer {
+  display: flex;
+  width: 100%;
+  /* border: 2px solid rgb(0, 132, 255); */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+.JobsDescriptionContainer-body {
+  /* border: 2px solid black; */
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+  /* top: 45%; */
+  position: relative;
+  bottom: 15px;
+  /* border-radius: 7px; */
+  /* border: 2px solid green; */
+  background: #ffefef;
+}
+
+.JobsDescriptionContainer-body-NameComponent {
+  display: flex;
+  background: white;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 4%;
+  font-weight: 500;
+  font-size: 20px;
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.508);
+  /* border-radius: 3px; */
+}
+
+.JobsDescriptionContainer-body-Description {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  width: 100%;
+  /* border: 2px solid black; */
+  margin-top: 5%;
+  /* border-radius: 7px; */
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.508);
+  justify-content: center;
+  align-items: center;
+}
+
+.JobsDescriptionContainer-body-Description > div {
+  width: 85%;
+  /* border: 2px solid green; */
+  font-size: 15px;
+  color: #000000;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.JobDescription-body-Description-image {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+}
+
+.JobImage {
+  /* border: 2px solid black; */
+  height: 20px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.JobImage > img {
+  padding: 0;
+  height: 40px;
+}
+
+.JobDescription-body-Description-image > div {
+  padding: 2%;
+  color: #999999;
+}
+
+.JobDescription-body-Description-firstContent {
+  margin-bottom: 5%;
+}
+
+.JobDescription-body-Description-firstContent-Name {
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid red; */
+  padding: 2%;
+  justify-content: space-between;
+}
+
+.EditButton {
+  /* border: 2px solid red; */
+  width: 15%;
+  height: 45px;
+}
+
+.EditButton > button {
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
+  color: white;
+  background: #ed5353;
+  outline: none;
+  border: none;
+  font-weight: 600;
+}
+
+.Content {
+  display: flex;
+  /* border: 2px solid red; */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Position {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.Location {
+  color: red;
+  padding: 0%;
+  /* border: 2px solid red; */
+}
+
+.JobDescription-body-Description-firstContent-Details {
+  padding: 2%;
+  display: flex;
+  /* border: 2px solid red; */
+}
+
+.DetailsContent {
+  display: flex;
+  /* border: 2px solid blue; */
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  padding: 1%;
+}
+
+.DetailsContent > div {
+  display: flex;
+  /* border: 2px solid red; */
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.DetailsContent > div > img {
+  /* border: 2px solid green; */
+}
+
+.JobDescription-body-Description-firstContent-CompanyInformation {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  margin-top: 5%;
+}
+
+.JobDescription-body-Description-firstContent-JobInformation {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  margin-top: 5%;
+}
+
+.JobDescription-body-Description-firstContent-SkillsRequired {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+
+.JobDescription-body-Description-firstContent-SkillsRequired > div {
+  display: flex;
+}
+
+.JobDescription-body-Description-firstContent-SkillsRequired > div > div {
+  margin-left: 2%;
+}
+
+.SkillsContainer {
+  background: #ffeeee;
+  /* border: 2px solid red; */
+  display: flex;
+  min-width: 8%;
+  font-size: 12px;
+  padding: 1%;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  border-radius: 22px;
+  /* margin-top: 2%; */
+}
+
+.JobDescription-body-Description-firstContent-AdditionalInformation {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+
+.Heading {
+  color: #000000;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 2%;
+}

@@ -1,40 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;0,9..40,1000;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800;1,9..40,900;1,9..40,1000&display=swap");
 
-html,
-body {
-  margin: 0;
+* {
   padding: 0;
-  /* overflow-y: hidden;
-  overflow-x: hidden; */
-  font-family: "Roboto", sans-serif;
-  /* overflow-y: auto; */
-  overflow-x: hidden;
-
-  /* height: 200vh;
-  width: 100vw; */
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
+
 .App {
-  height: 130vh;
-  width: 100vw;
-  /* position: fixed; */
-  /* overflow-y: auto; */
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+
+  background: #ffefef;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #fdb2b2;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #f73a30;
+  border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #35ff07;
 }

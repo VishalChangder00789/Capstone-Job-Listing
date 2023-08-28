@@ -1,0 +1,88 @@
+.RegisterContainer {
+  display: flex;
+  /* border: 2px solid red; */
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+}
+
+.RegisterContainer_LeftSection {
+  display: flex;
+  width: 65%;
+  height: 100%;
+  /* border: 2px solid rgb(166, 255, 0); */
+  flex-direction: column;
+  align-items: center;
+}
+
+.RegisterContainer_LeftSection_TopContent {
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid crimson; */
+  height: 80%;
+  width: 65%;
+  margin-top: 8%;
+}
+
+.RegisterContainer_LeftSection_TopContent_Content {
+  display: flex;
+  /* border: 2px solid black; */
+  width: 100%;
+  height: 10%;
+  flex-direction: column;
+}
+
+.RegisterContainer_LeftSection_TopContent_Content > h4 {
+  font-weight: 500;
+}
+
+.RegisterContainer_LeftSection_FormContainer {
+  display: flex;
+  flex-direction: column;
+  height: 82%;
+  width: 100%;
+  /* border: 2px solid rgb(170, 0, 255); */
+}
+
+.RegisterContainer_LeftSection_FormContainer > div {
+  display: flex;
+  /* border: 2px solid red; */
+  margin-top: 2%;
+  align-items: center;
+}
+.RegisterContainer_LeftSection_FormContainer > div > div {
+  /* border: 2px solid green; */
+  height: 100%;
+  margin-top: 0%;
+  margin-left: 2%;
+}
+
+.RegisterContainer_LeftSection_BottomContent {
+  display: flex;
+  /* border: 2px solid greenyellow; */
+  height: 8%;
+  width: 100%;
+  align-items: center;
+}
+
+.RegisterContainer_RightSection {
+  display: flex;
+  width: 35%;
+  height: 100%;
+  justify-content: center;
+}
+
+.RegisterContainer_RightSection > div {
+  display: flex;
+  /* border: 2px solid green; */
+  position: absolute;
+  color: white;
+  font-weight: 500;
+  margin-top: 3%;
+  font-size: 25px;
+}
+
+.RegisterContainer_RightSection > img {
+  height: 100%;
+  width: 100%;
+}

@@ -1,50 +1,86 @@
 .JobComponentContainer {
   display: flex;
-  border: 2px solid rgb(0, 229, 255);
-  width: 80%;
+  /* border: 2px solid rgb(0, 229, 255); */
+  width: 100%;
   height: 15%;
   margin-top: 5%;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  box-shadow: 1px 1px 10px 2px rgba(255, 0, 0, 0.529);
+  background: white;
+  padding: 2%;
+  /* border: 2px solid red; */
 }
 
 .JobComponentContainer-ImageContainer {
   display: flex;
-  border: 2px solid pink;
+  /* border: 2px solid pink; */
   height: 90%;
   width: 8%;
   justify-content: center;
   align-items: center;
 }
 
+.JobComponentContainer-ImageContainer > img {
+  display: flex;
+  /* border: 2px solid black; */
+  height: 70px;
+}
+
 .JobComponentContainer-InformationContainer {
   display: flex;
   flex-direction: column;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   height: 90%;
-  width: 55%;
+  width: 65%;
   margin-left: 2%;
 }
 
 .JobComponentContainer-InformationContainer-Name {
   display: flex;
   margin-top: 2%;
-  border: 2px solid purple;
+  /* border: 2px solid purple; */
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .JobComponentContainer-InformationContainer-CompanyDetail {
   display: flex;
   flex-direction: row;
   margin-top: 2%;
-  border: 2px solid yellowgreen;
+  /* border: 2px solid yellowgreen; */
+  color: #9c9c9c;
+  font-size: 15px;
+  /* font-weight: 700; */
+}
+
+.JobComponentContainer-InformationContainer-CompanyDetail > div {
+  /* margin-left: 2%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid red; */
+  margin-right: 5%;
+}
+
+.JobComponentContainer-InformationContainer-CompanyDetail > div > img {
+  display: flex;
+  /* border: 2px solid black; */
+  margin-right: 15%;
 }
 
 .JobComponentContainer-InformationContainer-JobType {
   display: flex;
   flex-direction: row;
   margin-top: 2%;
-  border: 2px solid green;
+  /* border: 2px solid green; */
+}
+
+.JobComponentContainer-InformationContainer-JobType > div {
+  margin-right: 5%;
+  font-size: 15px;
+  color: red;
 }
 
 .JobConmponentContainer-Skills {
@@ -52,7 +88,58 @@
   justify-content: center;
   flex-direction: column;
   margin-left: 8%;
-  border: 2px solid green;
-  width: 37%;
-  height: 90%;
+  /* border: 2px solid green; */
+  min-width: 55%;
+  height: 100%;
+  flex-wrap: wrap;
+  padding: 0.1%;
+}
+
+.JobConmponentContainer-Skills-SubContainer {
+  /* border: 2px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2%;
+  width: 100%;
+}
+
+.JobConmponentContainer-Skills-SubContainer > div {
+  display: flex;
+  /* border: 2px solid green; */
+  margin: 1%;
+  padding: 1%;
+  background: #ffeeee;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.JobConmponentContainer-Skills-ButtonsContainer {
+  /* border: 2px solid red; */
+  /* padding: 2%; */
+  display: flex;
+}
+
+.JobConmponentContainer-Skills-ButtonsContainer > div {
+  display: flex;
+  /* border: 2px solid blueviolet; */
+  /* margin-top: 2%; */
+  margin-bottom: 2%;
+  width: 100%;
+  /* padding: 2%; */
+  height: 40px;
+  /* justify-content: space-around; */
+  justify-content: flex-end;
+}
+
+.JobConmponentContainer-Skills-ButtonsContainer > div > button {
+  /* border: 2px solid red; */
+  width: 25%;
+  margin-right: 2%;
+  background: #ed5353;
+  outline: none;
+  border: white;
+  border-radius: 7px;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
 }

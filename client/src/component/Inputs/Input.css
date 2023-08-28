@@ -1,0 +1,24 @@
+.InputContainer {
+  display: flex;
+  /* border: 2px solid red; */
+  height: 40%;
+  justify-content: space-around;
+  margin-top: 2%;
+}
+
+.InputContainer > input {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  padding-left: 2%;
+  outline: none;
+  border: 1px solid #c2c2c2;
+}
+
+.InputContainer > label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid magenta; */
+}

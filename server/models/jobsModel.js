@@ -11,6 +11,7 @@ const jobSchema = mongoose.Schema({
   },
   logoUrl: {
     type: String,
+    required: [true, "A job should have a logo of a company"],
   },
   jobPosition: {
     type: String,
@@ -37,12 +38,12 @@ const jobSchema = mongoose.Schema({
     type: String,
     required: [true, "Need a job description"],
     minlength: [50, "A description should be more than 50 characters"],
-    maxlength: [250, "A description should be less than 250 characters"],
+    maxlength: [1000, "A description should be less than 250 characters"],
   },
   aboutCompany: {
     type: String,
     required: [true, "Please fill the about me section"],
-    maxlength: [200, "A about me should be less than 200 characters"],
+    maxlength: [1000, "A about me should be less than 200 characters"],
     minlength: [50, "A about me should be more than 50 characters"],
   },
   skillsRequired: {
@@ -52,6 +53,13 @@ const jobSchema = mongoose.Schema({
   information: {
     type: String,
     required: [true, "Information is required"],
+  },
+  totalPeople: {
+    type: Number,
+    required: [
+      true,
+      "Mention the number of poeple working in the orgainization",
+    ],
   },
 });
 

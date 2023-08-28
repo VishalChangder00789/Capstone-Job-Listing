@@ -1,35 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
-import TopImage from "../../asset/TopImage.png";
+import NavbarImage from "../../asset/Navbar.png";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL, LOGIN, REGISTER } from "../../constants/paths";
+import user from "../../asset/user.png";
+import { removeTokenFromLocalStorge } from "../../controller/removeTokenFromLocalStorage";
 
-const Navbar = () => {
+const Navbar = ({ logIn }) => {
   // Login logic completed
 
-  const [isloggedIn, setIsLoggedIn] = useState(false); // need to make it external
+  const [isloggedIn, setIsLoggedIn] = useState(); // need to make it external
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    removeTokenFromLocalStorge();
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    setIsLoggedIn(logIn);
+  }, []);
 
   return (
-    <div className="Navbar-Container">
-      <div className="Navbar-Container-ImageContainer">
-        <img src={TopImage} />
-      </div>
-      <div className="Navbar-Container-InteractiveElements">
-        {!isloggedIn ? (
-          <>
-            <button className="Navbar-Container-InteractiveElements-Button Login">
-              Log In
-            </button>
-            <button className="Navbar-Container-InteractiveElements-Button Register">
-              Register
-            </button>
-          </>
+    <div className="NavbarContainer">
+      <img src={NavbarImage} />
+
+      <div className="NavbarContainer-Buttons">
+        {isloggedIn ? (
+          <div className="NavbarContainer-Profile">
+            <button onClick={handleLogOut}>Logout</button>
+            <div>
+              Hello! Name of the Recruiter
+              <div>
+                <img src={user} />
+              </div>
+            </div>
+          </div>
         ) : (
           <>
-            <div className="Navbar-Container-InteractiveElements-Button Name">
-              Name of the recruiter
-            </div>
-            <div className="Navbar-Container-InteractiveElements-Button Profile">
-              Pic
-            </div>
+            <button
+              onClick={() => navigate(BASE_URL + LOGIN)}
+              className="LoginButton"
+            >
+              Login
+            </button>
+            <button
+              onClick={() => navigate(BASE_URL + REGISTER)}
+              className="RegisterButton"
+            >
+              Register
+            </button>
           </>
         )}
       </div>
