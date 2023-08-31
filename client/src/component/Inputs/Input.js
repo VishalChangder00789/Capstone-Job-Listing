@@ -8,13 +8,23 @@ import {
   isCorrectPassword,
 } from "../../controller/inputControllers";
 
-const Input = ({ name, type, placeholder, setState, stateValue, label }) => {
+const Input = ({
+  name,
+  type,
+  placeholder,
+  setState,
+  stateValue,
+  label,
+  setGoodToGo,
+}) => {
   // Using the debouncing feature
 
   const [Error, setError] = useState("");
   const [InputValue, setInputValue] = useState("");
   const [MainInputValue, setMainInputValue] = useState("");
   const [SubmissionClear, setSubmissionClear] = useState(false);
+
+  //#region ---------------------------  INPUTS CHECK : INPUTS CHECK ---------------------------
 
   useEffect(() => {
     let timerId = setTimeout(() => {
@@ -26,20 +36,28 @@ const Input = ({ name, type, placeholder, setState, stateValue, label }) => {
     };
   }, [InputValue]);
 
-  // Corrective Inputs
-
+  // If Inputs are Correct or not
   useEffect(() => {
     if (name === EMAIL) {
       isCorrectEmail(MainInputValue, setError, setSubmissionClear);
     } else if (name === PASSWORD) {
       isCorrectPassword(MainInputValue, setError, setSubmissionClear);
     }
+  }, [MainInputValue]);
 
+  //#endregion ---------------------------  INPUTS CHECK : INPUTS CHECK ---------------------------
+
+  //#region ---------------------------  INPUTS CHECK : SUBMISSION CLEAR ---------------------------
+
+  // If everything is good
+  useEffect(() => {
     if (SubmissionClear) {
       setState(MainInputValue);
-      console.log("Input value set");
+      setGoodToGo(true);
     }
-  }, [MainInputValue]);
+  }, [SubmissionClear]);
+
+  //#endregion ---------------------------  INPUTS CHECK : SUBMISSION CLEAR ---------------------------
 
   return !label ? (
     <div className="InputContainer">

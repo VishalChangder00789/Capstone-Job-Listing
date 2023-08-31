@@ -86,3 +86,26 @@
   height: 100%;
   width: 100%;
 }
+
+/*Error Handling*/
+.ErrorClass {
+  margin-top: 10%;
+  border: 2px solid rgb(255, 115, 0);
+  padding: 1%;
+  width: 45%;
+  border-radius: 7px;
+  background: rgb(224, 187, 36);
+  color: white;
+  border: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-family: sans-serif;
+}
+
+.ErrorClass > img {
+  width: 6%;
+  height: 80%;
+  /* border: 2px SOLID red; */
+  margin-right: 2%;
+}

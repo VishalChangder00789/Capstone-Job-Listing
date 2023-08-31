@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Client_Login.css";
 import Background from "../../asset/background.png";
 import Input from "../../component/Inputs/Input";
 import Button from "../../component/Button/Button";
 import { useDispatch } from "react-redux";
 import { UseSelector } from "react-redux/es/hooks/useSelector";
+import warning from "../../asset/warning.png";
 
 import {
   BrowserRouter,
@@ -25,8 +26,16 @@ import { EMAIL, PASSWORD } from "../../constants/inputNames";
 const Login = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
+  const [Error, setError] = useState("");
+  const [GoodToGo, setGoodToGo] = useState("");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setError("");
+    return;
+  }, [GoodToGo]);
 
   const SignIn = (e, Email, Password) => {
     let token = "";
@@ -48,7 +57,15 @@ const Login = () => {
         navigate(BASE_URL);
       })
       .catch((error) => {
-        console.log(error);
+        // Error Handling
+        let ErrorData = error.response.data;
+        if (
+          ErrorData.status === "fail" &&
+          ErrorData.message === "Email or Password is not entered"
+        ) {
+          setError("Email or Password is incorrect");
+          return;
+        }
       });
   };
 
@@ -70,6 +87,7 @@ const Login = () => {
               placeholder="Email"
               setState={setEmail}
               stateValue={Email}
+              setGoodToGo={setGoodToGo}
             />
 
             <Input
@@ -78,6 +96,7 @@ const Login = () => {
               placeholder="Password"
               setState={setPassword}
               stateValue={Password}
+              setGoodToGo={setGoodToGo}
             />
 
             <Button
@@ -85,10 +104,19 @@ const Login = () => {
               onClickHandler={(e) => SignIn(e, Email, Password)}
             />
           </div>
+
           <div className="LoginContainer_LeftSection_BottomContent">
             Don’t have an account? <Link to={BASE_URL + REGISTER}>Sign Up</Link>
           </div>
         </div>
+        {Error ? (
+          <div className="ErrorClass">
+            <img src={warning} />
+            {Error}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className="LoginContainer_RightSection">
         <div>Your Personal Job Finder</div>
