@@ -1,0 +1,27 @@
+.ErrorComponentContainer {
+  position: relative;
+  /* border: 2px solid gray; */
+  height: 40%;
+  width: 45%;
+  display: flex;
+  left: 45%;
+  bottom: 18%;
+  background: rgb(236, 74, 74);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2%;
+}
+
+.ErrorComponentInnerComponent {
+  display: flex;
+  /* border: 2px solid green; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
