@@ -3,6 +3,9 @@ import "./Client_Login.css";
 import Background from "../../asset/background.png";
 import Input from "../../component/Inputs/Input";
 import Button from "../../component/Button/Button";
+import { useDispatch } from "react-redux";
+import { UseSelector } from "react-redux/es/hooks/useSelector";
+
 import {
   BrowserRouter,
   Route,
@@ -16,11 +19,14 @@ import axios from "axios";
 import { BASE_URL, LOGIN, REGISTER } from "../../constants/paths";
 import { SERVER_BASE_URL, SERVER_LOGIN } from "../../constants/serverPath";
 import { sendTokenToLocalStorage } from "../../controller/isLoggedIn";
+import { addLoggedInUser } from "../../store/UserLoggedInJobSlice";
+import { EMAIL, PASSWORD } from "../../constants/inputNames";
 
 const Login = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const SignIn = (e, Email, Password) => {
     let token = "";
@@ -34,6 +40,11 @@ const Login = () => {
         token = res.data.token;
         sendTokenToLocalStorage(token);
         console.log("Token sent to local storage");
+
+        // Storing the data to Client state
+        const resObj = { ...res };
+        dispatch(addLoggedInUser(resObj.data));
+
         navigate(BASE_URL);
       })
       .catch((error) => {
@@ -54,7 +65,7 @@ const Login = () => {
 
           <div className="LoginContainer_LeftSection_FormContainer">
             <Input
-              name="Email"
+              name={EMAIL}
               type="text"
               placeholder="Email"
               setState={setEmail}
@@ -62,7 +73,7 @@ const Login = () => {
             />
 
             <Input
-              name="Password"
+              name={PASSWORD}
               type="password"
               placeholder="Password"
               setState={setPassword}

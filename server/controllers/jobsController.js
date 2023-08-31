@@ -2,7 +2,9 @@ const catchAsync = require("../utils/catchAsync");
 const jobModel = require("./../models/jobsModel");
 
 exports.getAllJobs = catchAsync(async (req, res, next) => {
-  const jobs = await jobModel.find();
+  console.log(req.query);
+
+  const jobs = await jobModel.find(req.query);
 
   // Add filtering : Aggregation pipeline
 

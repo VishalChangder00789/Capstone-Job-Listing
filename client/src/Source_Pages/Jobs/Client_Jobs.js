@@ -24,12 +24,43 @@ const Jobs = () => {
       });
   }, []);
 
+  //#region ----------------- CODE DEBOUNCING AND SEARCHING THE FILTERED OPTIONS -----------------
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedTerm, setDebouncedTerm] = useState("");
+
+  // Debouncing feature
+  useEffect(() => {
+    let timerId = setTimeout(() => {
+      setDebouncedTerm(searchTerm);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchTerm]);
+
+  useEffect(() => {
+    // Make an API call
+    // with filtered items
+
+    axios.get(SERVER_BASE_URL + SERVER_GETJOBS, {
+      query: {
+        searchJob: `${debouncedTerm}`,
+      },
+    });
+
+    console.log(debouncedTerm);
+  }, [debouncedTerm]);
+
+  //#endregion ----------------- CODE DEBOUNCING AND SEARCHING THE FILTERED OPTIONS -----------------
+
   return (
     <div className="MainPageJobContainer">
       <Navbar logIn={token ? true : false} />
 
       <div className="MainPageJobContainer-body">
-        <JobFilter />
+        <JobFilter setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
         {!Jobs
           ? ""
           : Jobs.map((m) => {

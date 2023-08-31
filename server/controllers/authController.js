@@ -40,7 +40,9 @@ exports.login = catchAsync(async (req, res, next) => {
   // If user exists or not
   // explicitly select the field which is not selected in the model
   const user = await userModel.findOne({ email: email }).select("+password");
+
   // instance method is applied over the queried document
+
   if (!user || !(await user.correctPassword(password, user.password))) {
     return res.status(400).json({
       status: "fail",
@@ -54,6 +56,9 @@ exports.login = catchAsync(async (req, res, next) => {
   res.status(201).json({
     status: "success",
     token,
+    data: {
+      userName: user.name,
+    },
   });
 });
 

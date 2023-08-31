@@ -4,14 +4,7 @@ import Background from "../../asset/background.png";
 import Input from "../../component/Inputs/Input";
 import Button from "../../component/Button/Button";
 import { BASE_URL, HOME, LOGIN, REGISTER } from "../../constants/paths";
-import {
-  BrowserRouter,
-  Route,
-  Router,
-  Routes,
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SERVER_BASE_URL, SERVER_REGISTER } from "../../constants/serverPath";
 import axios from "axios";
 import { sendTokenToLocalStorage } from "../../controller/isLoggedIn";

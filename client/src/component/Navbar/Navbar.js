@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import NavbarImage from "../../asset/Navbar.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useRoutes } from "react-router-dom";
 import { BASE_URL, LOGIN, REGISTER } from "../../constants/paths";
-import user from "../../asset/user.png";
+import userImage from "../../asset/user.png";
 import { removeTokenFromLocalStorge } from "../../controller/removeTokenFromLocalStorage";
+import { useSelector } from "react-redux";
 
 const Navbar = ({ logIn }) => {
   // Login logic completed
 
   const [isloggedIn, setIsLoggedIn] = useState(); // need to make it external
+  const [userName, setUserName] = useState("");
   const navigate = useNavigate();
+
+  const user = useSelector((state) => state.LoggedInUser);
+
+  useEffect(() => {
+    if (user.userName) {
+      setUserName(user.userName.data.userName);
+    }
+  }, [user]);
 
   const handleLogOut = () => {
     removeTokenFromLocalStorge();
@@ -30,9 +40,10 @@ const Navbar = ({ logIn }) => {
           <div className="NavbarContainer-Profile">
             <button onClick={handleLogOut}>Logout</button>
             <div>
-              Hello! Name of the Recruiter
+              Hello!
+              {!userName ? "" : ` ${userName}`}
               <div>
-                <img src={user} />
+                <img src={userImage} />
               </div>
             </div>
           </div>

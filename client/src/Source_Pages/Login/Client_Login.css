@@ -51,10 +51,10 @@
   align-items: center;
 }
 .LoginContainer_LeftSection_FormContainer > div > div {
-  /* border: 2px solid green; */
-  height: 100%;
+  /* border: 2px solid green;
+  height: 50%;
   margin-top: 0%;
-  margin-left: 2%;
+  margin-left: 2%; */
 }
 
 .LoginContainer_LeftSection_BottomContent {

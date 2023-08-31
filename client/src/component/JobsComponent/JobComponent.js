@@ -28,7 +28,7 @@ const JobComponent = ({ item }) => {
   }, []);
 
   return (
-    <div id={item.id} className="JobComponentContainer">
+    <div id={item._id} className="JobComponentContainer">
       {/* Logo Image */}
       <div className="JobComponentContainer-ImageContainer">
         <img src={item.logoUrl} />
