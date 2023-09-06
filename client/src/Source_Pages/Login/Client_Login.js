@@ -22,6 +22,7 @@ import { SERVER_BASE_URL, SERVER_LOGIN } from "../../constants/serverPath";
 import { sendTokenToLocalStorage } from "../../controller/isLoggedIn";
 import { addLoggedInUser } from "../../store/UserLoggedInJobSlice";
 import { EMAIL, PASSWORD } from "../../constants/inputNames";
+import { sendUserNameToLocalStorage } from "../../controller/userNameController";
 
 const Login = () => {
   const [Email, setEmail] = useState("");
@@ -48,11 +49,10 @@ const Login = () => {
       .then((res) => {
         token = res.data.token;
         sendTokenToLocalStorage(token);
-        console.log("Token sent to local storage");
 
         // Storing the data to Client state
         const resObj = { ...res };
-        dispatch(addLoggedInUser(resObj.data));
+        sendUserNameToLocalStorage(resObj.data.data.userName);
 
         navigate(BASE_URL);
       })

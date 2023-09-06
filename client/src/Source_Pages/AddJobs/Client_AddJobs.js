@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 // Local Imports
 import "./Client_AddJobs.css";
 import Background2 from "./../../asset/background2.png";
-import Input from "../../component/Inputs/Input";
 import Button from "../../component/Button/Button";
-import { Link, useSearchParams } from "react-router-dom";
-import { BASE_URL, LOGIN, REGISTER } from "../../constants/paths";
-import Dropdown from "../../component/Dropdown/Dropdown";
-import { addJob } from "../../controller/addJob";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL, HOME } from "../../constants/paths";
+
+import { useSelector } from "react-redux";
+import {
+  SERVER_BASE_URL,
+  SERVER_GETJOBS,
+  SERVER_BASE_URL_SAFE,
+} from "../../constants/serverPath";
+import { getTokenFromLocalStorage } from "../../controller/getTokenFromLocalStorage";
+
+// When the useState is called then the Input State should be changed to the API call
+// Need to make a seperate Input Elements or make the older one work
 
 const AddJobs = () => {
+  const navigate = useNavigate();
+
   const [CompanyName, setCompanyName] = useState("");
   const [LogoURL, setLogoURL] = useState("");
   const [JobPosition, setJobPosition] = useState("");
@@ -22,18 +33,60 @@ const AddJobs = () => {
   const [AboutCompany, setAboutCompany] = useState("");
   const [SkillsRequired, setSkillsRequired] = useState("");
   const [Information, setInformation] = useState("");
+  const [TotalPeople, setTotalPeople] = useState("");
+  const token = getTokenFromLocalStorage();
 
-  const jobType = ["Full Time", "Part Time"];
-  const remote = ["Yes", "No"];
+  const selectedJobForEdit = useSelector((state) => state.SelectedJobForEdit);
+  const [JobDisplay, setJobDisplay] = useState("");
 
   const AddJob = () => {
-    let remoteOffice = false;
-    if (RemoteOffice === "Yes") {
-      remoteOffice = true;
+    console.log(RemoteOffice);
+    console.log("Job Type is : ", JobType);
+
+    if (
+      !CompanyName ||
+      !LogoURL ||
+      !JobPosition ||
+      !MonthlySalary ||
+      !Location ||
+      !JobDescription ||
+      !AboutCompany ||
+      !SkillsRequired ||
+      !Information ||
+      !TotalPeople
+    ) {
+      return;
     }
 
-    // To be completed
-    addJob();
+    axios
+      .post(
+        SERVER_BASE_URL + SERVER_GETJOBS,
+        {
+          companyName: CompanyName,
+          logoUrl: LogoURL,
+          jobPosition: JobPosition,
+          monthlySalary: MonthlySalary,
+          location: Location,
+          jobDescription: JobDescription,
+          aboutCompany: AboutCompany,
+          skillsRequired: SkillsRequired.split(","),
+          information: Information,
+          jobType: JobType,
+          remoteOffice: RemoteOffice,
+          totalPeople: TotalPeople,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        navigate(BASE_URL + HOME);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const Cancel = () => {
@@ -50,111 +103,141 @@ const AddJobs = () => {
     setInformation("");
   };
 
+  useEffect(() => {
+    console.log(JobType);
+  }, [JobType]);
+
   return (
-    <div className="AddJobContainer">
-      <div className="AddJobContainer-LeftSection">
-        <div className="AddJobContainer-LeftSection-TopContent">
-          <div className="AddJobContainer-LeftSection-TopContent-Content">
-            <h1>Add job description</h1>
+    <div className="EditJobContainer">
+      <div className="EditJobContainer-LeftSection">
+        <div className="EditJobContainer-LeftSection-TopContent">
+          <div className="EditJobContainer-LeftSection-TopContent-Content">
+            <h1>Add a Job</h1>
           </div>
 
-          <div className="AddJobContainer-LeftSection-FormContainer">
-            <Input
-              label="Company Name"
-              name="CompanyName"
-              type="text"
-              placeholder="Enter your company name here"
-              setState={setCompanyName}
-              stateValue={CompanyName}
-            />
+          <div className="EditJobContainer-LeftSection-FormContainer">
+            <div className="InputContainer-EDIT-ADD">
+              <label>Company Name</label>
+              <input
+                type="text"
+                placeholder="Company Name"
+                value={CompanyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+              />
+            </div>
 
-            <Input
-              label="Add Logo URL"
-              name="logoURL"
-              type="text"
-              placeholder="Enter the link"
-              setState={setLogoURL}
-              stateValue={LogoURL}
-            />
+            <div className="InputContainer-EDIT-ADD">
+              <label> Add Logo URL</label>
+              <input
+                type="text"
+                placeholder="Add Logo URL"
+                value={LogoURL}
+                onChange={(e) => setLogoURL(e.target.value)}
+              />
+            </div>
 
-            <Input
-              label="Job Position"
-              name="logoURL"
-              type="text"
-              placeholder="Enter job position"
-              setState={setJobPosition}
-              stateValue={JobPosition}
-            />
+            <div className="InputContainer-EDIT-ADD">
+              <label> Job Position</label>
+              <input
+                type="text"
+                placeholder="Add Job Position"
+                value={JobPosition}
+                onChange={(e) => setJobPosition(e.target.value)}
+              />
+            </div>
 
-            <Input
-              label="Monthly Salary"
-              name="salary"
-              type="number"
-              placeholder="Enter Amount in rupees"
-              setState={setMonthlySalary}
-              stateValue={MonthlySalary}
-            />
+            <div className="InputContainer-EDIT-ADD">
+              <label> Monthly Salary</label>
+              <input
+                type="number"
+                placeholder="Enter Amount in rupees"
+                value={MonthlySalary}
+                onChange={(e) => setMonthlySalary(e.target.value)}
+              />
+            </div>
 
             {/*  CHANGES ARE NEEDED HERE */}
 
-            <Dropdown
-              label="Job Type"
-              title={JobType === "" ? "Select" : `${JobType}`}
-              options={jobType}
-              setValue={setJobType}
-            />
+            <div className="InputContainer-EDIT-ADD">
+              <label>Job Type</label>
+              <select onChange={(e) => setJobType(e.target.value)}>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+              </select>
+            </div>
 
-            <Dropdown
-              label="Remote/office"
-              title={RemoteOffice === "" ? "Select" : `${RemoteOffice}`}
-              options={remote}
-              setValue={setRemoteOffice}
-            />
+            <div className="InputContainer-EDIT-ADD">
+              <label>Remote/Office</label>
+              <select onChange={(e) => setRemoteOffice(e.target.value)}>
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
+              </select>
+            </div>
 
-            <Input
-              label="Location"
-              name="Location"
-              type="text"
-              placeholder="Enter Location"
-              setState={setLocation}
-              stateValue={Location}
-            />
+            <div className="InputContainer-EDIT-ADD">
+              <label> Location </label>
+              <input
+                type="text"
+                placeholder="Enter location"
+                value={Location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
 
-            <Input
-              label="Job Description"
-              name="description"
-              type="text"
-              placeholder="Type the job description"
-              setState={setJobDescription}
-              stateValue={JobDescription}
-            />
+            <div className="InputContainer-EDIT-ADD">
+              <label> Job Description</label>
+              <textarea
+                className="text-area"
+                type="text"
+                placeholder="Enter Job Description "
+                value={JobDescription}
+                minLength="50"
+                maxLength="1000"
+                onChange={(e) => setJobDescription(e.target.value)}
+              />
+            </div>
 
-            <Input
-              label="About Company"
-              name="aboutCompany"
-              type="text"
-              placeholder="Type about your company"
-              setState={setAboutCompany}
-              stateValue={AboutCompany}
-            />
+            <div className="InputContainer-EDIT-ADD">
+              <label> About Company</label>
+              <textarea
+                className="text-area"
+                type="text"
+                placeholder="About Company "
+                value={AboutCompany}
+                minLength="50"
+                maxLength="1000"
+                onChange={(e) => setAboutCompany(e.target.value)}
+              />
+            </div>
 
-            <Input
-              label="Skills required"
-              name="skills"
-              type="text"
-              placeholder="Enter the must have skills"
-              setState={setSkillsRequired}
-              stateValue={SkillsRequired}
-            />
+            <div className="InputContainer-EDIT-ADD">
+              <label> Skills </label>
+              <input
+                type="text"
+                placeholder="Enter comma seperated skills"
+                value={SkillsRequired}
+                onChange={(e) => setSkillsRequired(e.target.value)}
+              />
+            </div>
 
-            <Input
-              label="Information"
-              name="information"
-              type="text"
-              placeholder="Enter the additional information"
-              setState={setInformation}
-              stateValue={Information}
-            />
+            <div className="InputContainer-EDIT-ADD">
+              <label> Additional Information </label>
+              <input
+                type="text"
+                placeholder="Enter any additional information"
+                value={Information}
+                onChange={(e) => setInformation(e.target.value)}
+              />
+            </div>
+            <div className="InputContainer-EDIT-ADD">
+              <label> Total No. of People</label>
+              <input
+                type="number"
+                placeholder="Total People"
+                value={TotalPeople}
+                onChange={(e) => setTotalPeople(e.target.value)}
+              />
+            </div>
 
             <div className="FormButtonsContainer">
               <Button
@@ -162,12 +245,12 @@ const AddJobs = () => {
                 onClickHandler={Cancel}
                 cancelButton={true}
               />
-              <Button ButtonTitle="+ Add Job" onClickHandler={AddJob} />
+              <Button ButtonTitle="Add Job" onClickHandler={AddJob} />
             </div>
           </div>
         </div>
       </div>
-      <div className="AddJobContainer-RightSection">
+      <div className="EditJobContainer-RightSection">
         <div>Recruiter add job details here</div>
         <img src={Background2} />
       </div>

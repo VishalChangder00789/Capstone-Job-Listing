@@ -5,7 +5,7 @@ import { useNavigate, useRoutes } from "react-router-dom";
 import { BASE_URL, LOGIN, REGISTER } from "../../constants/paths";
 import userImage from "../../asset/user.png";
 import { removeTokenFromLocalStorge } from "../../controller/removeTokenFromLocalStorage";
-import { useSelector } from "react-redux";
+import { getUserNameFromLocalStorage } from "../../controller/userNameController";
 
 const Navbar = ({ logIn }) => {
   // Login logic completed
@@ -14,14 +14,6 @@ const Navbar = ({ logIn }) => {
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.LoggedInUser);
-
-  useEffect(() => {
-    if (user.userName) {
-      setUserName(user.userName.data.userName);
-    }
-  }, [user]);
-
   const handleLogOut = () => {
     removeTokenFromLocalStorge();
     window.location.reload();
@@ -29,6 +21,7 @@ const Navbar = ({ logIn }) => {
 
   useEffect(() => {
     setIsLoggedIn(logIn);
+    setUserName(getUserNameFromLocalStorage());
   }, []);
 
   return (
@@ -41,7 +34,7 @@ const Navbar = ({ logIn }) => {
             <button onClick={handleLogOut}>Logout</button>
             <div>
               Hello!
-              {!userName ? "" : ` ${userName}`}
+              {!userName ? "User" : ` ${userName}`}
               <div>
                 <img src={userImage} />
               </div>

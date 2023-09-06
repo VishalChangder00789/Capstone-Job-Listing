@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./JobComponent.css";
 import { useDispatch } from "react-redux";
 import { addJob } from "../../store/SelectedJobSlice";
+import { addEditJob } from "../../store/SelectedJobForEdit";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL, SINGLEJOB } from "../../constants/paths";
+import { ADDJOBS, BASE_URL, EDITJOBS, SINGLEJOB } from "../../constants/paths";
+import { SERVER_BASE_URL, SERVER_GETJOBS } from "../../constants/serverPath";
 import { getTokenFromLocalStorage } from "../../controller/getTokenFromLocalStorage";
 import people from "../../asset/people.png";
+import axios from "axios";
 
 const JobComponent = ({ item }) => {
   const dispatch = useDispatch();
@@ -18,12 +21,21 @@ const JobComponent = ({ item }) => {
     navigate(BASE_URL + SINGLEJOB);
   };
 
-  const handleEdit = () => {
-    console.log("Edit");
+  const handleEdit = (itemId) => {
+    axios
+      .get(SERVER_BASE_URL + SERVER_GETJOBS + `/${itemId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        navigate(BASE_URL + EDITJOBS);
+        dispatch(addEditJob(itemId));
+      });
   };
 
   useEffect(() => {
-    const Skills = item.skillsRequired.split(",");
+    const Skills = item.skillsRequired;
     setSkills(Skills);
   }, []);
 

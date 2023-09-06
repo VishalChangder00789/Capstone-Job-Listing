@@ -1,10 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./JobFilter.css";
 import SearchIcon from "../../asset/Search.png";
 import Skills from "../Skills/Skills";
+import Button from "../Button/Button";
+import { useNavigate } from "react-router-dom";
+import { SERVER_BASE_URL } from "../../constants/serverPath";
+import { BASE_URL, ADDJOBS } from "../../constants/paths";
 
 const JobFilter = ({ setSearchTerm, searchTerm }) => {
-  const [skills, setSkills] = useState("");
+  const [selectedSkills, setSelectedSkills] = useState([]);
+  const [JobType, setJobType] = useState("");
+  const navigate = useNavigate();
+
+  const handleAddJobButton = () => {
+    navigate(BASE_URL + ADDJOBS);
+  };
+
+  const removeItem = (skillName) => {
+    const selectedSkillsList = [...selectedSkills];
+
+    const remaningSkills = selectedSkillsList.filter(
+      (skills) => skills !== skillName
+    );
+    setSelectedSkills(remaningSkills);
+  };
+
+  useEffect(() => {
+    setSearchTerm({
+      jobType: JobType,
+      skillsRequired: selectedSkills,
+    });
+  }, [JobType, selectedSkills]);
 
   return (
     <div className="JobFilterContainer">
@@ -14,16 +40,31 @@ const JobFilter = ({ setSearchTerm, searchTerm }) => {
           <input
             type="text"
             placeholder="Type any job title"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={JobType}
+            onChange={(e) => setJobType(e.target.value)}
           />
         </div>
         <div className="JobFilterContainer-InnerContent-SkillsContainer">
           {/* Create a skill drop down component */}
-          <Skills />
+          <Skills
+            setSelectedSkills={setSelectedSkills}
+            selectedSkills={selectedSkills}
+          />
           <div className="JobFilterContainer-InnerContent-SkillsContianer-nextContent">
-            {" "}
-            Add an Editable skills sets
+            {!selectedSkills
+              ? ""
+              : selectedSkills.map((m) => {
+                  return (
+                    <div className="SingleSkillComponent">
+                      {m}
+                      <div onClick={() => removeItem(m)}>X</div>
+                    </div>
+                  );
+                })}
+          </div>
+
+          <div className="JobFilter-InnerContent-SkillsContainer-addJobButton">
+            <button onClick={handleAddJobButton}>+ Add Job</button>
           </div>
         </div>
       </div>

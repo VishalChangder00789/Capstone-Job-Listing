@@ -2,10 +2,21 @@ import React, { useEffect, useState } from "react";
 import "./Input.css";
 import { useSearchParams } from "react-router-dom";
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
-import { EMAIL, NAME, PASSWORD } from "../../constants/inputNames";
+import {
+  CHECKBOX,
+  EMAIL,
+  NAME,
+  PASSWORD,
+  PASSWORDCONFIRM,
+  PHONE,
+} from "../../constants/inputNames";
 import {
   isCorrectEmail,
   isCorrectPassword,
+  isCorrectName,
+  isCorrectPhone,
+  isCheckBoxFilled,
+  isPasswordConfirmCorrect,
 } from "../../controller/inputControllers";
 
 const Input = ({
@@ -42,6 +53,14 @@ const Input = ({
       isCorrectEmail(MainInputValue, setError, setSubmissionClear);
     } else if (name === PASSWORD) {
       isCorrectPassword(MainInputValue, setError, setSubmissionClear);
+    } else if (name === NAME) {
+      isCorrectName(MainInputValue, setError, setSubmissionClear);
+    } else if (name === PHONE) {
+      isCorrectPhone(MainInputValue, setError, setSubmissionClear);
+    } else if (name === CHECKBOX) {
+      isCheckBoxFilled(MainInputValue, setError, setSubmissionClear);
+    } else if (name === PASSWORDCONFIRM) {
+      isPasswordConfirmCorrect(MainInputValue, setError, setSubmissionClear);
     }
   }, [MainInputValue]);
 
@@ -54,8 +73,9 @@ const Input = ({
     if (SubmissionClear) {
       setState(MainInputValue);
       setGoodToGo(true);
+      console.log(MainInputValue);
     }
-  }, [SubmissionClear]);
+  });
 
   //#endregion ---------------------------  INPUTS CHECK : SUBMISSION CLEAR ---------------------------
 
@@ -65,13 +85,17 @@ const Input = ({
         name={name}
         type={type}
         placeholder={placeholder}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => {
+          name === CHECKBOX
+            ? setInputValue(!InputValue)
+            : setInputValue(e.target.value);
+        }}
         value={InputValue}
       />
       {Error ? <ErrorComponent message={Error} /> : ""}
     </div>
   ) : (
-    <div className="InputContainer">
+    <div className="InputContainer AddJobPage">
       <label>{label}</label>
       <input
         type={type}

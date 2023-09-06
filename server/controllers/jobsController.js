@@ -2,9 +2,20 @@ const catchAsync = require("../utils/catchAsync");
 const jobModel = require("./../models/jobsModel");
 
 exports.getAllJobs = catchAsync(async (req, res, next) => {
-  console.log(req.query);
+  const myquery = {};
 
-  const jobs = await jobModel.find(req.query);
+  if (req.query.jobPosition) {
+    myquery.jobPosition = req.query.jobPosition;
+  }
+
+  if (req.query.skillsRequired) {
+    myquery.skillsRequired = req.query.skillsRequired;
+  }
+
+  const jobs = await jobModel.find(myquery);
+
+  // const jobs = await jobModel.find({ skillsRequired: { $in: skills } });
+  // const jobs = await jobModel.find();
 
   // Add filtering : Aggregation pipeline
 
@@ -41,6 +52,8 @@ exports.getJob = catchAsync(async (req, res, next) => {
 });
 
 exports.updateJob = catchAsync(async (req, res, next) => {
+  console.log(req.params.id);
+
   const updatedJob = await jobModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,

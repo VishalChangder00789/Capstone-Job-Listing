@@ -4,3 +4,4 @@ export const REGISTER = "/_register";
 export const HOME = "/";
 export const ADDJOBS = "/_addJobs";
 export const SINGLEJOB = "/_singleJob";
+export const EDITJOBS = "/_editJob";

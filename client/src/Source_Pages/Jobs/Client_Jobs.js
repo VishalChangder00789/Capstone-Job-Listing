@@ -16,7 +16,6 @@ const Jobs = () => {
       .get(SERVER_BASE_URL + SERVER_GETJOBS)
       .then((response) => {
         setJobs(response.data.data.jobs);
-        console.log(Jobs);
       })
       .catch((error) => {
         console.log(error);
@@ -26,8 +25,12 @@ const Jobs = () => {
 
   //#region ----------------- CODE DEBOUNCING AND SEARCHING THE FILTERED OPTIONS -----------------
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedTerm, setDebouncedTerm] = useState("");
+  const initialObj = {
+    jobType: "",
+    skillsRequired: [],
+  };
+  const [searchTerm, setSearchTerm] = useState(initialObj);
+  const [debouncedTerm, setDebouncedTerm] = useState(initialObj);
 
   // Debouncing feature
   useEffect(() => {
@@ -43,14 +46,21 @@ const Jobs = () => {
   useEffect(() => {
     // Make an API call
     // with filtered items
-
-    axios.get(SERVER_BASE_URL + SERVER_GETJOBS, {
-      query: {
-        searchJob: `${debouncedTerm}`,
-      },
-    });
-
-    console.log(debouncedTerm);
+    // console.log(debouncedTerm);
+    axios
+      .get(SERVER_BASE_URL + SERVER_GETJOBS, {
+        params: {
+          jobPosition: `${debouncedTerm.jobType}`,
+          skillsRequired: { $in: debouncedTerm.skillsRequired },
+        },
+      })
+      .then((data) => {
+        let foundJob = data.data.data.jobs;
+        // console.log("Jobs Found are : ", foundJob);
+        if (foundJob.length !== 0) {
+          setJobs(foundJob);
+        }
+      });
   }, [debouncedTerm]);
 
   //#endregion ----------------- CODE DEBOUNCING AND SEARCHING THE FILTERED OPTIONS -----------------

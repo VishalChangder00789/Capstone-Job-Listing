@@ -38,7 +38,7 @@ const jobSchema = mongoose.Schema({
     type: String,
     required: [true, "Need a job description"],
     minlength: [50, "A description should be more than 50 characters"],
-    maxlength: [1000, "A description should be less than 250 characters"],
+    maxlength: [1000, "A description should be less than 1000 characters"],
   },
   aboutCompany: {
     type: String,
@@ -47,7 +47,7 @@ const jobSchema = mongoose.Schema({
     minlength: [50, "A about me should be more than 50 characters"],
   },
   skillsRequired: {
-    type: String,
+    type: [String],
     required: [true, "Please enter the skills required for this job role"],
   },
   information: {

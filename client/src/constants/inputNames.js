@@ -3,6 +3,7 @@ export const EMAIL = "email";
 export const PHONE = "phone";
 export const PASSWORD = "password";
 export const PASSWORDCONFIRM = "passwordConfirm";
+export const CHECKBOX = "checkbox";
 
 /* FOR ADD JOBS */
 export const COMPANY_NAME = "companyName";

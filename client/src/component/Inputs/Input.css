@@ -2,8 +2,9 @@
   display: flex;
   /* border: 2px solid red; */
   height: 100%;
-  margin-top: 2%;
+  /* margin-top: 2%; */
   /* align-items: center; */
+  width: 100%;
   flex-direction: column;
 }
 
@@ -16,6 +17,7 @@
   outline: none;
   border: 1px solid #c2c2c2;
   margin-bottom: 1%;
+  /* border: 2px solid red; */
 }
 
 .InputContainer > label {
@@ -23,4 +25,26 @@
   justify-content: center;
   align-items: center;
   /* border: 2px solid magenta; */
+}
+
+.AddJobPage {
+  display: flex;
+  flex-direction: row;
+  /* border: 2px solid red; */
+  min-height: 4%;
+}
+
+.InputContainer-EDIT-ADD > textarea {
+  display: flex;
+  height: 100%;
+  width: 72%;
+  border-radius: 5px;
+  padding-left: 2%;
+  outline: none;
+  border: 1px solid #c2c2c2;
+  margin-bottom: 1%;
+  /* border: 2px solid red; */
+  align-items: center;
+  justify-content: center;
+  padding-top: 2%;
 }

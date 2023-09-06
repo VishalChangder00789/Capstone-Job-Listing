@@ -74,6 +74,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     token = req.headers.authorization.split(" ")[1];
   }
 
+  // console.log("Token is : ", token);
+
   if (!token) {
     return res.status(401).json({
       status: "fail",

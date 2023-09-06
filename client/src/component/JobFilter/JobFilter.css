@@ -1,7 +1,7 @@
 .JobFilterContainer {
   display: flex;
   /* border: 2px solid blue; */
-  height: 25vh;
+  min-height: 25vh;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -11,27 +11,31 @@
 
 .JobFilterContainer-InnerContent {
   /* border: 2px solid greenyellow; */
-  width: 90%;
-  height: 80%;
+  width: 85%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* TOP Content*/
 .JobFilterContainer-InnerContent-Inputs {
   border: 2px solid rgba(128, 128, 128, 0.388);
   display: flex;
-  height: 35%;
+  min-height: 7vh;
   justify-content: space-around;
   border-radius: 5px;
   /* justify-content: center; */
   align-items: center;
+  margin-top: 2%;
 }
 
 .JobFilterContainer-InnerContent-Inputs > img {
   flex-direction: row;
   display: flex;
   /* border: 2px solid red; */
-  height: 50%;
-  width: 3%;
+  height: 70%;
+  width: 4%;
 }
 
 .JobFilterContainer-InnerContent-Inputs > input {
@@ -55,11 +59,60 @@
 
 .JobFilterContainer-InnerContent-SkillsContianer-nextContent {
   display: flex;
-  border: 2px solid rgba(165, 42, 42, 0.296);
+  /* border: 2px solid rgba(165, 42, 42, 0.296); */
   margin-left: 5%;
-  height: 75%;
-  width: 80%;
+  min-height: 75%;
+  min-width: 60%;
   border-radius: 7px;
+  /* justify-content: center; */
+  align-items: center;
+  padding-left: 1%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.JobFilter-InnerContent-SkillsContainer-addJobButton {
+  display: flex;
+  /* border: 2px solid red; */
+  margin-left: 10%;
+  min-height: 40px;
+  min-width: 110px;
+}
+
+.JobFilter-InnerContent-SkillsContainer-addJobButton > button {
+  display: flex;
+  height: 40px;
+  width: 100%;
   justify-content: center;
   align-items: center;
+  color: white;
+  background: #ed5353;
+  border-radius: 7px;
+  outline: none;
+  border: none;
+}
+/*  */
+
+.SingleSkillComponent {
+  display: flex;
+  /* border: 2px solid red; */
+  min-width: 15%;
+  margin: 1%;
+  background: #ffeeee;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1%;
+}
+
+.SingleSkillComponent > div {
+  /* border: 2px solid red; */
+  height: 35px;
+  width: 40px;
+  background: #ff6b6b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  margin-left: 7%;
 }

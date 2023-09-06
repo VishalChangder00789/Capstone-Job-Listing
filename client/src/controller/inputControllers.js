@@ -27,6 +27,16 @@ const hasSpecialCharacters = (InputValue) => {
   return false;
 };
 
+const hasNumbers = (InputValue) => {
+  for (let i = 0; i < InputValue.length; i++) {
+    if (InputValue.charCodeAt(i) >= 48 && InputValue.charCodeAt(i) <= 57) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
 /* USABLE METHODS */
 export const isCorrectEmail = (email, setError, setSubmissionClear) => {
   if (email.length === 0) {
@@ -81,6 +91,70 @@ export const isCorrectPassword = (password, setError, setSubmissionClear) => {
   // Password should be having a special character
   if (!hasSpecialCharacters(password)) {
     setError("Password should contain a special character");
+    setSubmissionClear(false);
+    return;
+  }
+
+  setError("");
+  setSubmissionClear(true);
+  return;
+};
+
+export const isCorrectName = (name, setError, setSubmissionClear) => {
+  if (name.length === 0) {
+    setError("");
+    setSubmissionClear(false);
+    return;
+  }
+
+  if (hasNumbers(name)) {
+    setError("Name should not contain a number");
+    setSubmissionClear(false);
+    return;
+  }
+
+  setError("");
+  setSubmissionClear(true);
+  return;
+};
+
+export const isCorrectPhone = (phone, setError, setSubmissionClear) => {
+  if (phone.length === 0) {
+    setError("");
+    setSubmissionClear(false);
+    return;
+  }
+
+  if (phone.length < 10 || phone.length > 10) {
+    setError("Phone number should be 10 digits");
+    setSubmissionClear(false);
+    return;
+  }
+
+  setError("");
+  setSubmissionClear(true);
+  return;
+};
+
+export const isCheckBoxFilled = (checkbox, setError, setSubmissionClear) => {
+  if (checkbox === false) {
+    setError("Please fill the checkbox");
+    setSubmissionClear(false);
+    return;
+  }
+
+  setError("");
+  setSubmissionClear(true);
+  return;
+};
+
+export const isPasswordConfirmCorrect = (
+  passConfirm,
+  setError,
+  setSubmissionClear
+) => {
+  if (passConfirm.length === 0) {
+    setError("");
     setSubmissionClear(false);
     return;
   }

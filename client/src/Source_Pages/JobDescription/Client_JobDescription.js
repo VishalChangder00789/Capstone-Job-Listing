@@ -1,23 +1,43 @@
 import React, { useEffect, useState } from "react";
 import "./Client_JobDescription.css";
 import Navbar from "../../component/Navbar/Navbar";
-import JobFilter from "../../component/JobFilter/JobFilter";
-import JobComponent from "../../component/JobsComponent/JobComponent";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { SERVER_BASE_URL, SERVER_GETJOBS } from "../../constants/serverPath";
 import { getTokenFromLocalStorage } from "../../controller/getTokenFromLocalStorage";
 import money from "../../asset/money.png";
 import bag from "../../asset/bag.png";
+import { useNavigate } from "react-router-dom";
+import { ADDJOBS, BASE_URL, EDITJOBS, SINGLEJOB } from "../../constants/paths";
+import { addEditJob } from "../../store/SelectedJobForEdit";
 
 const JobDescription = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const selectedJob = useSelector((state) => state.SelectedJob);
   const [JobDisplay, setJobDisplay] = useState("");
   const token = getTokenFromLocalStorage();
 
+  const handleEdit = (id) => {
+    axios
+      .get(SERVER_BASE_URL + SERVER_GETJOBS + `/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        navigate(BASE_URL + EDITJOBS);
+        dispatch(addEditJob(id));
+      });
+  };
+
   useEffect(() => {
     axios
-      .get(SERVER_BASE_URL + SERVER_GETJOBS + `/${selectedJob.id}`)
+      .get(SERVER_BASE_URL + SERVER_GETJOBS + `/${selectedJob.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((data) => {
         setJobDisplay(data.data.data.job);
       })
@@ -49,7 +69,13 @@ const JobDescription = () => {
                 <div className="Content">
                   <div className="Position">{JobDisplay.jobPosition}</div>{" "}
                   <div className="EditButton">
-                    {!token ? "" : <button>Edit</button>}
+                    {!token ? (
+                      ""
+                    ) : (
+                      <button onClick={() => handleEdit(selectedJob.id)}>
+                        Edit
+                      </button>
+                    )}
                   </div>
                 </div>
                 <div className="Location">{JobDisplay.location}</div>
@@ -90,7 +116,7 @@ const JobDescription = () => {
                 <div>
                   {!JobDisplay.skillsRequired
                     ? ""
-                    : JobDisplay.skillsRequired.split(",").map((s) => {
+                    : JobDisplay.skillsRequired.map((s) => {
                         return <div className="SkillsContainer">{s}</div>;
                       })}
                 </div>
