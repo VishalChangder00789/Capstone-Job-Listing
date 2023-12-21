@@ -18,7 +18,7 @@ const JobComponent = ({ item }) => {
 
   const handleJobComponentContainer = (jobId) => {
     dispatch(addJob(jobId));
-    navigate(BASE_URL + SINGLEJOB);
+    navigate(SINGLEJOB);
   };
 
   const handleEdit = (itemId) => {
@@ -29,7 +29,7 @@ const JobComponent = ({ item }) => {
         },
       })
       .then((response) => {
-        navigate(BASE_URL + EDITJOBS);
+        navigate(EDITJOBS);
         dispatch(addEditJob(itemId));
       });
   };

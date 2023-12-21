@@ -26,7 +26,7 @@ const JobDescription = () => {
         },
       })
       .then((response) => {
-        navigate(BASE_URL + EDITJOBS);
+        navigate(EDITJOBS);
         dispatch(addEditJob(id));
       });
   };

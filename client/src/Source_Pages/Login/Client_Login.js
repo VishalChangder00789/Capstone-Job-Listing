@@ -17,7 +17,7 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 
-import { BASE_URL, LOGIN, REGISTER } from "../../constants/paths";
+import { BASE_URL, HOME, LOGIN, REGISTER } from "../../constants/paths";
 import { SERVER_BASE_URL, SERVER_LOGIN } from "../../constants/serverPath";
 import { sendTokenToLocalStorage } from "../../controller/isLoggedIn";
 import { addLoggedInUser } from "../../store/UserLoggedInJobSlice";
@@ -54,7 +54,7 @@ const Login = () => {
         const resObj = { ...res };
         sendUserNameToLocalStorage(resObj.data.data.userName);
 
-        navigate(BASE_URL);
+        navigate(HOME);
       })
       .catch((error) => {
         // Error Handling

@@ -13,7 +13,7 @@ const JobFilter = ({ setSearchTerm, searchTerm }) => {
   const navigate = useNavigate();
 
   const handleAddJobButton = () => {
-    navigate(BASE_URL + ADDJOBS);
+    navigate(ADDJOBS);
   };
 
   const removeItem = (skillName) => {

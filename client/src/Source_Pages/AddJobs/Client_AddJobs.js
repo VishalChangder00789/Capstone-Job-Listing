@@ -82,7 +82,7 @@ const AddJobs = () => {
         }
       )
       .then((res) => {
-        navigate(BASE_URL + HOME);
+        navigate(HOME);
       })
       .catch((error) => {
         console.log(error);

@@ -42,14 +42,11 @@ const Navbar = ({ logIn }) => {
           </div>
         ) : (
           <>
-            <button
-              onClick={() => navigate(BASE_URL + LOGIN)}
-              className="LoginButton"
-            >
+            <button onClick={() => navigate(LOGIN)} className="LoginButton">
               Login
             </button>
             <button
-              onClick={() => navigate(BASE_URL + REGISTER)}
+              onClick={() => navigate(REGISTER)}
               className="RegisterButton"
             >
               Register
