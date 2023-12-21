@@ -29,12 +29,12 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           {/* <Route path="/" element={<Login />} /> */}
-          <Route path={BASE_URL + LOGIN} element={<Login />} />
-          <Route path={BASE_URL + REGISTER} element={<Register />} />
-          <Route path={BASE_URL + HOME} element={<Jobs />} />
-          <Route path={BASE_URL + ADDJOBS} element={<AddJobs />} />
-          <Route path={BASE_URL + SINGLEJOB} element={<JobDescription />} />
-          <Route path={BASE_URL + EDITJOBS} element={<EditJobs />} />
+          <Route path={LOGIN} element={<Login />} />
+          <Route path={REGISTER} element={<Register />} />
+          <Route path={HOME} element={<Jobs />} />
+          <Route path={ADDJOBS} element={<AddJobs />} />
+          <Route path={SINGLEJOB} element={<JobDescription />} />
+          <Route path={EDITJOBS} element={<EditJobs />} />
         </Routes>
       </BrowserRouter>
     </div>
